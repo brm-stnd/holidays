@@ -4,9 +4,9 @@ import holidayService from '@/services/holiday.service';
 class HolidayController {
   public holidayService = new holidayService();
 
-  public getTotalHoliday = async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
+  public getTotalHoliday = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const totalHolidays: number = await this.holidayService.calculateHoliday();
+      const totalHolidays: number = await this.holidayService.calculateHoliday(req.body);
 
       res.status(200).json({ number_of_working_days: totalHolidays });
     } catch (error) {

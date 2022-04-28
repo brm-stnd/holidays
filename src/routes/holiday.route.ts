@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import HolidayController from '@/controllers/holiday.controller';
 import { Routes } from '@interfaces/routes.interface';
+import validate from '@middlewares/validate';
+import holidayValidations from '@validations/holiday.validation';
 
 class HolidayRoute implements Routes {
   public path = '/holidays';
@@ -12,7 +14,7 @@ class HolidayRoute implements Routes {
   }
 
   private initializeRoutes() {
-    this.router.post(`${this.path}/calculator`, this.holidayController.getTotalHoliday);
+    this.router.post(`${this.path}/calculator`, validate(holidayValidations.postHoliday), this.holidayController.getTotalHoliday);
   }
 }
 
