@@ -7,22 +7,27 @@ export const Util = {
       return obj;
     }, {});
   },
-  dateFormatIso: (date: Date): String => {
+  dateFormatIso: (date: Date): string => {
     const YYYY = date.getFullYear();
-    let MM = date.getMonth() + 1; // Months start at 0
-    let DD = date.getDate();
+    const MM = date.getMonth() + 1; // Months start at 0
+    const DD = date.getDate();
 
-    if (DD < 10) DD = '0' + DD;
-    if (MM < 10) MM = '0' + MM;
+    let newDD;
+    let newMM;
+    if (DD < 10) {
+      newDD = '0' + DD;
+    }
+    if (MM < 10) {
+      newMM = '0' + MM;
+    }
 
-    return `${YYYY}-${MM}-${DD}`;
+    return `${YYYY}-${newMM}-${newDD}`;
   },
-  nthDay: (date: Date): String => {
-    const newDate = new Date(date);
+  nthDay: (date: Date): string => {
     const nth = ['First', 'Second', 'Third', 'Fourth', 'Fifth'],
       dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    return nth[Math.floor(newDate.getDate() / 7)] + '  ' + dayNames[newDate.getDay()] + ' of ' + monthNames[newDate.getMonth()];
+    return nth[Math.floor(date.getDate() / 7)] + '  ' + dayNames[date.getDay()] + ' of ' + monthNames[date.getMonth()];
   },
 };

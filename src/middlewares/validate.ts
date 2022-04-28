@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { Util } from '@utils/Util';
+import { Util } from '@utils/util';
 
 const validate = schema => (req, res, next) => {
   const validSchema = Util.pick(schema, ['params', 'query', 'body']);
@@ -11,7 +11,7 @@ const validate = schema => (req, res, next) => {
   if (error) {
     const errorMessage = error.details.map(details => details.message).join(', ');
     console.log('error', errorMessage);
-    return res.status(422).json({ error: errorMessage });
+    return res.status(400).json({ error: errorMessage });
   }
   Object.assign(req, value);
   return next();

@@ -1,5 +1,5 @@
 import { IHolidayBody } from '@interfaces/holiday.interface';
-import { Util } from '@utils/Util';
+import { Util } from '@utils/util';
 
 class HolidayService {
   public async calculateHoliday(body: IHolidayBody): Promise<number> {
@@ -20,7 +20,7 @@ class HolidayService {
     ];
 
     let certainOccurrencesDays = ['2022-06-06', '2022-01-21'];
-    certainOccurrencesDays = certainOccurrencesDays.map(certainOccurrencesDay => Util.nthDay(certainOccurrencesDay));
+    certainOccurrencesDays = certainOccurrencesDays.map(certainOccurrencesDay => Util.nthDay(new Date(certainOccurrencesDay)));
 
     const loopingStartDate = new Date(start_date.getFullYear(), start_date.getMonth(), start_date.getDate() + 1);
     const loopingEndDate = new Date(end_date.getFullYear(), end_date.getMonth(), end_date.getDate() - 1);
@@ -44,8 +44,7 @@ class HolidayService {
       }
     }
 
-    const totalWeekDays = totalDate - totalHolidays;
-    return totalWeekDays;
+    return totalDate - totalHolidays;
   }
 }
 
