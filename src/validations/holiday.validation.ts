@@ -7,7 +7,7 @@ const holidayValidations = {
   postHoliday: {
     body: Joi.object({
       start_date: Joi.date().format('MM/DD/YYYY').required(),
-      end_date: Joi.date().format('MM/DD/YYYY').required(),
+      end_date: Joi.date().format('MM/DD/YYYY').min(Joi.ref('start_date')).required(),
     }),
   },
 };
